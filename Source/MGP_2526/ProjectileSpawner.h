@@ -15,10 +15,14 @@ public:
 	// Sets default values for this actor's properties
 	AProjectileSpawner();
 
+	UFUNCTION(BlueprintCallable, Category = "Shoot")
+		void Shoot();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	int tick;
+	bool canFire = true;
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

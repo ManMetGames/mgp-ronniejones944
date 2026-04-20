@@ -17,13 +17,24 @@ void AProjectileSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GetWorld()->SpawnActor<AGrappleProjectile>(ProjectileActor, GetActorLocation(), GetActorRotation());
+	/*AProjectileSpawner::Shoot();*/
+	tick = 0;
 }
 
 // Called every frame
 void AProjectileSpawner::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+	/*Super::Tick(DeltaTime);
+	tick++;
+	if (tick % 100 == 0) {
+		AProjectileSpawner::Shoot();
+	}*/
+}
 
+void AProjectileSpawner::Shoot() {
+	if (canFire) {
+		GetWorld()->SpawnActor<AGrappleProjectile>(ProjectileActor, GetActorLocation(), GetActorRotation());
+	}
+	canFire = false;
 }
 

@@ -1,5 +1,6 @@
 #include "Player/MyCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "ProjectileSpawner.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
