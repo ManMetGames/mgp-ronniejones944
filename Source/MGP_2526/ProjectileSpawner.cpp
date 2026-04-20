@@ -24,8 +24,8 @@ void AProjectileSpawner::BeginPlay()
 // Called every frame
 void AProjectileSpawner::Tick(float DeltaTime)
 {
-	/*Super::Tick(DeltaTime);
-	tick++;
+	Super::Tick(DeltaTime);
+	/*tick++;
 	if (tick % 100 == 0) {
 		AProjectileSpawner::Shoot();
 	}*/

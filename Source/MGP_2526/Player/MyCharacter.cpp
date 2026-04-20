@@ -16,14 +16,23 @@ AMyCharacter::AMyCharacter()
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
 void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	FVector Position = FVector(920.0, -510.0,1050.0);
+	FVector PlayerPosition = this->GetActorLocation();
+	FVector LaunchVector = this->GetActorRotation().Vector();
+	FVector GrappleDirection = Position - PlayerPosition;
+	VectorNormalize(GrappleDirection);
+	
 
+	/*LaunchVector.Z = LaunchForce;
+	LaunchVector.X = LaunchForce;*/
+	LaunchCharacter(GrappleDirection, false, false);
 }
 
 // Called to bind functionality to input
