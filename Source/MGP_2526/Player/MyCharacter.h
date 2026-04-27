@@ -37,5 +37,5 @@ protected:
 
 	void TurnCamera(float InputValue);
 	void LookUp(float InputValue);
-
+	void GrappleLaunch();
 };

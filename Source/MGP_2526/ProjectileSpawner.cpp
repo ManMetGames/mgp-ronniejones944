@@ -3,6 +3,7 @@
 
 #include "ProjectileSpawner.h"
 #include "GrappleProjectile.h"
+#include "Logging/StructuredLog.h"
 
 // Sets default values
 AProjectileSpawner::AProjectileSpawner()
@@ -33,7 +34,9 @@ void AProjectileSpawner::Tick(float DeltaTime)
 
 void AProjectileSpawner::Shoot() {
 	if (canFire) {
-		GetWorld()->SpawnActor<AGrappleProjectile>(ProjectileActor, GetActorLocation(), GetActorRotation());
+		CurrentProjectile = GetWorld()->SpawnActor<AGrappleProjectile>(ProjectileActor, GetActorLocation(), GetActorRotation());
+		ProjectileLocation = CurrentProjectile->GetActorLocation();
+		UE_LOG(LogTemp, Warning, TEXT("Actor location: %s"), *ProjectileLocation.ToString());
 	}
 	canFire = false;
 }

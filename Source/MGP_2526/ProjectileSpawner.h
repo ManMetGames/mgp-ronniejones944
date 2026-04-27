@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include"GrappleProjectile.h"
 #include "ProjectileSpawner.generated.h"
 
 UCLASS()
@@ -18,11 +19,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Shoot")
 		void Shoot();
 
+	UPROPERTY(EditAnywhere)
+		AGrappleProjectile* CurrentProjectile;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	int tick;
 	bool canFire = true;
+	FVector ProjectileLocation;
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

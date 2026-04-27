@@ -1,6 +1,7 @@
 #include "Player/MyCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "ProjectileSpawner.h"
+#include "GrappleProjectile.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -25,14 +26,12 @@ void AMyCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	FVector Position = FVector(920.0, -510.0,1050.0);
 	FVector PlayerPosition = this->GetActorLocation();
-	FVector LaunchVector = this->GetActorRotation().Vector();
 	FVector GrappleDirection = Position - PlayerPosition;
-	VectorNormalize(GrappleDirection);
-	
+	GrappleDirection.Normalize(1);
 
 	/*LaunchVector.Z = LaunchForce;
 	LaunchVector.X = LaunchForce;*/
-	LaunchCharacter(GrappleDirection, false, false);
+	LaunchCharacter(GrappleDirection*LaunchForce, false, false);
 }
 
 // Called to bind functionality to input
@@ -68,4 +67,9 @@ void AMyCharacter::TurnCamera(float InputValue)
 void AMyCharacter::LookUp(float InputValue)
 {
 	AddControllerPitchInput(InputValue);
+}
+
+void AMyCharacter::GrappleLaunch() 
+{
+
 }
