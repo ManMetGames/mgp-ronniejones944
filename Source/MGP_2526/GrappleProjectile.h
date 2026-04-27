@@ -22,6 +22,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable, Category = "hit")
+	void HitFunction();
+
 	UPROPERTY(EditAnywhere)
 	class UStaticMeshComponent* ProjectileMesh;
 

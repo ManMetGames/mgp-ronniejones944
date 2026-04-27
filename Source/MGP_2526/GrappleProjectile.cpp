@@ -1,4 +1,5 @@
 #include "GrappleProjectile.h"
+#include "Logging/StructuredLog.h"
 
 // Sets default values
 AGrappleProjectile::AGrappleProjectile()
@@ -12,13 +13,14 @@ AGrappleProjectile::AGrappleProjectile()
 	ProjectileComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Component"));
 	ProjectileComponent->InitialSpeed = 800;
 	ProjectileComponent->MaxSpeed = 8500;
+
 }
 
 // Called when the game starts or when spawned
 void AGrappleProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-
+	UE_LOG(LogTemp, Warning, TEXT("bleehStart"));
 }
 
 // Called every frame
@@ -28,3 +30,8 @@ void AGrappleProjectile::Tick(float DeltaTime)
 
 }
 
+void AGrappleProjectile::HitFunction() {
+	FVector Position = this->GetActorLocation();
+	UE_LOG(LogTemp, Warning, TEXT("Actor location: %s"), *Position.ToString());
+	UE_LOG(LogTemp, Warning, TEXT("bleehHit"));
+}
