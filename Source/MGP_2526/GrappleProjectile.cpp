@@ -1,4 +1,5 @@
 #include "GrappleProjectile.h"
+#include "Kismet/GameplayStatics.h"
 #include "Logging/StructuredLog.h"
 
 // Sets default values
@@ -14,6 +15,7 @@ AGrappleProjectile::AGrappleProjectile()
 	ProjectileComponent->InitialSpeed = 800;
 	ProjectileComponent->MaxSpeed = 8500;
 
+	ProjectileMesh->SetSimulatePhysics(true);
 }
 
 // Called when the game starts or when spawned
@@ -21,6 +23,8 @@ void AGrappleProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("bleehStart"));
+
+
 }
 
 // Called every frame
@@ -30,8 +34,10 @@ void AGrappleProjectile::Tick(float DeltaTime)
 
 }
 
-void AGrappleProjectile::HitFunction() {
+FVector AGrappleProjectile::HitFunction() {
 	FVector Position = this->GetActorLocation();
-	UE_LOG(LogTemp, Warning, TEXT("Actor location: %s"), *Position.ToString());
 	UE_LOG(LogTemp, Warning, TEXT("bleehHit"));
+	UE_LOG(LogTemp, Warning, TEXT("Actor location: %s"), *Position.ToString());
+	return Position;
 }
+

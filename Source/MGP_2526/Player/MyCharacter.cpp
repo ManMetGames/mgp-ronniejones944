@@ -23,14 +23,14 @@ void AMyCharacter::BeginPlay()
 void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	FVector Position = FVector(920.0, -510.0,1050.0);
-	FVector PlayerPosition = this->GetActorLocation();
-	FVector GrappleDirection = Position - PlayerPosition;
-	GrappleDirection.Normalize(1);
+	if (IsLaunching) 
+	{
+		FVector PlayerPosition = this->GetActorLocation();
+		FVector GrappleDirection = Position - PlayerPosition;
+		GrappleDirection.Normalize(1);
 
-	/*LaunchVector.Z = LaunchForce;
-	LaunchVector.X = LaunchForce;*/
-	LaunchCharacter(GrappleDirection*LaunchForce, false, false);
+		LaunchCharacter(GrappleDirection * LaunchForce, false, false);
+	}
 }
 
 // Called to bind functionality to input
@@ -68,7 +68,9 @@ void AMyCharacter::LookUp(float InputValue)
 	AddControllerPitchInput(InputValue);
 }
 
-void AMyCharacter::GrappleLaunch() 
+void AMyCharacter::GrappleLaunch(FVector launchPoint)
 {
-
+	IsLaunching = true;
+	Position = FVector(920.0, -510.0, 1050.0);
+	Position = launchPoint;
 }

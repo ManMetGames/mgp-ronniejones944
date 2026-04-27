@@ -15,7 +15,8 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Launch Force")
 	float LaunchForce=15;
-
+	bool IsLaunching = false;
+	FVector Position;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -37,5 +38,7 @@ protected:
 
 	void TurnCamera(float InputValue);
 	void LookUp(float InputValue);
-	void GrappleLaunch();
+	UFUNCTION(BlueprintCallable, Category = "launch")
+	void GrappleLaunch(FVector launchPoint);
+
 };
