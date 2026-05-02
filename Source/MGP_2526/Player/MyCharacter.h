@@ -15,6 +15,11 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Launch Force")
 	float LaunchForce=15;
+	UPROPERTY(EditAnywhere, Category = "Min Launch Force")
+	float MinLaunchForce=9;
+	UPROPERTY(EditAnywhere, Category = "Max Launch Force")
+	float MaxLaunchForce=40;
+
 	bool IsLaunching = false;
 	FVector Position;
 protected:
@@ -39,6 +44,6 @@ protected:
 	void TurnCamera(float InputValue);
 	void LookUp(float InputValue);
 	UFUNCTION(BlueprintCallable, Category = "launch")
-	void GrappleLaunch(FVector launchPoint);
+	void GrappleLaunch(FVector launchPoint, bool launch);
 
 };

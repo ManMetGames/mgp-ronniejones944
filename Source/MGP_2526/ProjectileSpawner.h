@@ -19,6 +19,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Shoot")
 		void Shoot();
 
+	UFUNCTION(BlueprintCallable, Category = "Release")
+		void OnRelease();
+
 	UPROPERTY(EditAnywhere)
 		AGrappleProjectile* CurrentProjectile;
 protected:

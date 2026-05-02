@@ -68,9 +68,8 @@ void AMyCharacter::LookUp(float InputValue)
 	AddControllerPitchInput(InputValue);
 }
 
-void AMyCharacter::GrappleLaunch(FVector launchPoint)
+void AMyCharacter::GrappleLaunch(FVector launchPoint, bool launch)
 {
-	IsLaunching = true;
-	Position = FVector(920.0, -510.0, 1050.0);
+	IsLaunching = launch;
 	Position = launchPoint;
 }
