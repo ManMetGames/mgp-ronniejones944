@@ -12,8 +12,8 @@ AGrappleProjectile::AGrappleProjectile()
 	RootComponent = ProjectileMesh;
 
 	ProjectileComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Component"));
-	ProjectileComponent->InitialSpeed = InitialSpeed;
-	ProjectileComponent->MaxSpeed = MaxSpeed;
+	ProjectileComponent->InitialSpeed = 800;
+	ProjectileComponent->MaxSpeed = 8500;
 
 	ProjectileMesh->SetSimulatePhysics(true);
 }

@@ -14,12 +14,6 @@ public:
 	// Sets default values for this actor's properties
 	AGrappleProjectile();
 
-	UPROPERTY(EditAnywhere, Category = "Initial speed")
-	int InitialSpeed;
-
-	UPROPERTY(EditAnywhere, Category = "Max speed")
-	int MaxSpeed;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

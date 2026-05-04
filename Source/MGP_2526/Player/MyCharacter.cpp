@@ -29,6 +29,8 @@ void AMyCharacter::Tick(float DeltaTime)
 		FVector GrappleDirection = Position - PlayerPosition;
 		GrappleDirection.Normalize(1);
 
+		UE_LOG(LogTemp, Warning, TEXT("test: %s"), *GrappleDirection.ToString());
+
 		LaunchCharacter(GrappleDirection * LaunchForce, false, false);
 	}
 }
