@@ -11,6 +11,8 @@ AProjectileSpawner::AProjectileSpawner()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Cable = CreateDefaultSubobject<UCableComponent>(TEXT("Cable"));
+	Cable->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -20,6 +22,8 @@ void AProjectileSpawner::BeginPlay()
 
 	/*AProjectileSpawner::Shoot();*/
 	tick = 0;
+
+	Cable->SetVisibility(false);
 }
 
 // Called every frame
@@ -34,17 +38,20 @@ void AProjectileSpawner::Tick(float DeltaTime)
 
 void AProjectileSpawner::Shoot() {
 	if (canFire) {
-		UE_LOG(LogTemp, Warning, TEXT("Fired"));
 		CurrentProjectile = GetWorld()->SpawnActor<AGrappleProjectile>(ProjectileActor, GetActorLocation(), GetActorRotation());
 		ProjectileLocation = CurrentProjectile->GetActorLocation();
-		UE_LOG(LogTemp, Warning, TEXT("Actor location: %s"), *ProjectileLocation.ToString());
+
+		USceneComponent* CurrentProjectileComp = CurrentProjectile->GetRootComponent();
+		Cable->SetAttachEndToComponent(CurrentProjectileComp, NAME_None);
+		Cable->SetVisibility(true);
 	}
 	canFire = false;
 }
 
-void AProjectileSpawner::OnRelease()
+void AProjectileSpawner::OnRelease() // Performed on release of the shoot button
 {
-	CurrentProjectile->Destroy();
-	canFire = true;
+	CurrentProjectile->Destroy(); // Destroys the projectile
+	canFire = true; // Allows the player to shoot again
+	Cable->SetVisibility(false); // makes the cable invisible
 }
 

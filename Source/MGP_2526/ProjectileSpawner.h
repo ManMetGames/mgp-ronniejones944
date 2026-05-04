@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include"GrappleProjectile.h"
+#include "GrappleProjectile.h"
+#include "CableComponent.h"
 #include "ProjectileSpawner.generated.h"
 
 UCLASS()
@@ -21,6 +22,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Release")
 		void OnRelease();
+
+	UPROPERTY(EditAnywhere, Category = "Cable")
+		class UCableComponent* Cable;
 
 	UPROPERTY(EditAnywhere)
 		AGrappleProjectile* CurrentProjectile;
