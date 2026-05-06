@@ -42,7 +42,6 @@ void AGrappleProjectile::OnComponentHit(UPrimitiveComponent* HitComp, AActor* Ot
 void AGrappleProjectile::OnDestroyed() 
 {
 	Player->GrappleLaunch(FVector(0, 0, 0), false, GrappleGunNumber); // sets the player to no longer launching
-	UE_LOG(LogTemp, Warning, TEXT("Grapple gun number %d"), GrappleGunNumber);
 }
 
 void AGrappleProjectile::Destroyed() // run when the projectile is destroyed
