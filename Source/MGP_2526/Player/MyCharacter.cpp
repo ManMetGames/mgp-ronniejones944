@@ -23,13 +23,11 @@ void AMyCharacter::BeginPlay()
 void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (IsLaunching) 
+	if (IsLaunching)  // applies the grapple force when grappling
 	{
 		FVector PlayerPosition = this->GetActorLocation();
 		FVector GrappleDirection = Position - PlayerPosition;
 		GrappleDirection.Normalize(1);
-
-		UE_LOG(LogTemp, Warning, TEXT("test: %s"), *GrappleDirection.ToString());
 
 		LaunchCharacter(GrappleDirection * LaunchForce, false, false);
 	}
@@ -70,7 +68,7 @@ void AMyCharacter::LookUp(float InputValue)
 	AddControllerPitchInput(InputValue);
 }
 
-void AMyCharacter::GrappleLaunch(FVector launchPoint, bool launch)
+void AMyCharacter::GrappleLaunch(FVector launchPoint, bool launch) // used to receive the grapple position and to see if it is grappled
 {
 	IsLaunching = launch;
 	Position = launchPoint;

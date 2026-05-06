@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GrappleProjectile.h"
+#include "Player/MyCharacter.h"
 #include "CableComponent.h"
 #include "ProjectileSpawner.generated.h"
 
@@ -28,12 +29,15 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		AGrappleProjectile* CurrentProjectile;
+
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	int tick;
 	bool canFire = true;
-	FVector ProjectileLocation;
+	AActor* PlayerActor;
+	AMyCharacter* Player;
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
