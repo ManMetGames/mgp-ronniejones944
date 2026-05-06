@@ -40,4 +40,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	AMyCharacter* Player;
 
+	UPROPERTY(EditAnywhere)
+	int GrappleGunNumber;
+
 };

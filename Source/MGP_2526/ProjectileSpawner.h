@@ -30,13 +30,14 @@ public:
 	UPROPERTY(EditAnywhere)
 		AGrappleProjectile* CurrentProjectile;
 
-
+	UPROPERTY(EditAnywhere)
+	int GrappleGunNumber=0;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	bool canFire = true;
-	AActor* PlayerActor;
+	AActor*  PlayerActor;
 	AMyCharacter* Player;
 public:
 	// Called every frame

@@ -15,13 +15,18 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Launch Force")
 	float LaunchForce=15;
+	//bool IsLaunching = false;
+	bool IsLaunching[2] = {false,false};
 
-	bool IsLaunching = false;
 	FVector Position;
+	FVector Positions[2] = {FVector(0,0,0),FVector(0,0,0)};
+
+	FVector LaunchPositions[2] = { FVector(0,0,0),FVector(0,0,0) };
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	FVector GrappleDirection = FVector(0, 0, 0);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -30,7 +35,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UFUNCTION(BlueprintCallable, Category = "launch")
-	void GrappleLaunch(FVector launchPoint, bool launch);
+	void GrappleLaunch(FVector launchPoint, bool launch, int GrappleGunNumber);
 protected:
 	UPROPERTY(EditAnywhere)
 	class UCameraComponent* Camera;

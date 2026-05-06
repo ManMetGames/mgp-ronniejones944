@@ -36,12 +36,13 @@ void AGrappleProjectile::Tick(float DeltaTime)
 void AGrappleProjectile::OnComponentHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 { 
 	FVector position = this->GetActorLocation(); // returns the position of the grapple projectile
-	Player->GrappleLaunch(position, true); //calls the player grapple function and gives the position to the player
+	Player->GrappleLaunch(position, true, GrappleGunNumber); //calls the player grapple function and gives the position to the player
 }
 
 void AGrappleProjectile::OnDestroyed() 
 {
-	Player->GrappleLaunch(FVector(0, 0, 0), false); // sets the player to no longer launching
+	Player->GrappleLaunch(FVector(0, 0, 0), false, GrappleGunNumber); // sets the player to no longer launching
+	UE_LOG(LogTemp, Warning, TEXT("Grapple gun number %d"), GrappleGunNumber);
 }
 
 void AGrappleProjectile::Destroyed() // run when the projectile is destroyed

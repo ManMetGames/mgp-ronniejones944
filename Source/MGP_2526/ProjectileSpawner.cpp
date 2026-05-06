@@ -37,6 +37,7 @@ void AProjectileSpawner::Shoot() { // used to fire the grapple projectile
 	if (canFire) {
 		CurrentProjectile = GetWorld()->SpawnActor<AGrappleProjectile>(ProjectileActor, GetActorLocation(), GetActorRotation()); // creates the projectile
 		CurrentProjectile->Player = Player;
+		CurrentProjectile->GrappleGunNumber = GrappleGunNumber;
 		USceneComponent* CurrentProjectileComp = CurrentProjectile->GetRootComponent();
 		Cable->SetAttachEndToComponent(CurrentProjectileComp, NAME_None);
 		Cable->SetVisibility(true); // makes the cable visible

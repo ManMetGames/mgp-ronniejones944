@@ -23,13 +23,22 @@ void AMyCharacter::BeginPlay()
 void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (IsLaunching)  // applies the grapple force when grappling
+	if (IsLaunching[0] || IsLaunching[1]) // checks to see if either grappling hooks are hooked
 	{
 		FVector PlayerPosition = this->GetActorLocation();
-		FVector GrappleDirection = Position - PlayerPosition;
-		GrappleDirection.Normalize(1);
-
-		LaunchCharacter(GrappleDirection * LaunchForce, false, false);
+		GrappleDirection = FVector(0, 0, 0);
+		int iterator = 0;
+		for (FVector CurrentPosition : Positions)  // noramalises and adds each of the valid grapple positions to the grapple direction
+		{
+			if (IsLaunching[iterator]) 
+			{
+				LaunchPositions[iterator] = CurrentPosition - PlayerPosition;
+				LaunchPositions[iterator].Normalize(1);
+				GrappleDirection += LaunchPositions[iterator];
+			}
+			iterator++;
+		}
+		LaunchCharacter(GrappleDirection * LaunchForce, false, false); // launches the player
 	}
 }
 
@@ -68,8 +77,9 @@ void AMyCharacter::LookUp(float InputValue)
 	AddControllerPitchInput(InputValue);
 }
 
-void AMyCharacter::GrappleLaunch(FVector launchPoint, bool launch) // used to receive the grapple position and to see if it is grappled
+void AMyCharacter::GrappleLaunch(FVector launchPoint, bool launch, int GrappleGunNumber) // used to receive the grapple position and to see if it is grappled for each of the grapple guns
 {
-	IsLaunching = launch;
-	Position = launchPoint;
+	IsLaunching[GrappleGunNumber] = launch;
+	//Position = launchPoint;
+	Positions[GrappleGunNumber] = launchPoint;
 }
