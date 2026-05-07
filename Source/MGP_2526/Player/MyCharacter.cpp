@@ -37,8 +37,9 @@ void AMyCharacter::Tick(float DeltaTime)
 				GrappleDirection += LaunchPositions[iterator];
 			}
 			iterator++;
+			
 		}
-		LaunchCharacter(GrappleDirection * LaunchForce, false, false); // launches the player
+		LaunchCharacter(GrappleDirection * LaunchForce * DeltaTime, false, false); // launches the player
 	}
 }
 
